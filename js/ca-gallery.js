@@ -46,7 +46,14 @@ function renderPortfolio() {
     var currProj = projs[i]
     $('.img-fluid').attr('src',currProj.img);
     $('.portfolio-caption h4').text(currProj.name);
-    $('.portfolio-caption p').text(currProj.title)
+    $('.portfolio-caption p').text(currProj.title);
+
+    $('.modal-body h2').text(currProj.name);
+    $('.item-intro').text(currProj.title);
+    $('.description').text(currProj.desc);
+    $('.date').text('Date: ' + currProj.publishedAt);
+    $('.category').text('Category: ' + currProj.labels)
+    $('.github').attr('href',currProj.url)
   }
 }
 
