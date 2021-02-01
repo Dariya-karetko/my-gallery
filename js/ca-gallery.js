@@ -42,19 +42,21 @@
 function renderPortfolio() {
   var projs = getProjs();
 
-  for (var i = 0; i < projs.length; i++) {
-    var currProj = projs[i]
-    $('.img-fluid').attr('src',currProj.img);
-    $('.portfolio-caption h4').text(currProj.name);
-    $('.portfolio-caption p').text(currProj.title);
-
-    $('.modal-body h2').text(currProj.name);
-    $('.item-intro').text(currProj.title);
-    $('.description').text(currProj.desc);
-    $('.date').text('Date: ' + currProj.publishedAt);
-    $('.category').text('Category: ' + currProj.labels)
-    $('.github').attr('href',currProj.url)
-  }
+  var strHtmls = projs.map(function (proj) {
+    return `
+    <div class="col-md-4 col-sm-6 portfolio-item">
+    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal">
+    <div class="portfolio-hover">
+      <div class="portfolio-hover-content">
+        <i class="fa fa-plus fa-3x"></i>
+      </div>
+    </div>
+    <img class="img-fluid" src="img/${proj.img}">
+  </a>
+  <div class="portfolio-caption">
+    <h4>${proj.name}</h4>
+    <p class="text-muted">${proj.title}</p>
+  </div>`
+  })
+  $('.img-container').html(strHtmls)
 }
-
-
